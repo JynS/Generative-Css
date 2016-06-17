@@ -1,0 +1,57 @@
+body {
+    overflow: hidden;
+}
+.radial, #linear {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-left: -8px;
+    padding-bottom: 8px;
+}
+
+/* radial backgrounds */
+#radial1 { z-index: 2}
+#radial2 { z-index: 3}
+#radial3 { z-index: 4}
+#radial4 { z-index: 5}
+#radial5 { z-index: 6}
+#radial6 { z-index: 7}
+#radial7 { z-index: 8}
+#radial8 { z-index: 9}
+
+#sidebar {
+    position: absolute;
+    z-index: 10;
+    width: 300px;
+    height: 100%;
+    background-color: RGBA(66, 60, 60, 0.6);
+    right: -300px;
+    bottom: -16px;
+    transition: right 0.5s ease-out;
+    overflow-y: scroll;
+}
+
+#sidebar li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.open {
+    right: 0 !important;
+}
+
+.swatch, .swatch-layer {
+    height: 150px;
+    width: 150px;
+}
+.swatch-layer {
+    position: absolute;
+}
+.swatch {
+    position: relative;
+    border: 1px solid #000;
+}
+
+.hide {
+    visibility: hidden;
+}
