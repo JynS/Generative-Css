@@ -197,9 +197,6 @@
 
             var layers = [];
 
-            // build backgrounds
-            // function()
-
             // add classes / set gradient
             $(sw).addClass("swatch");
             self.setBackground(sw, lgrad);
@@ -216,11 +213,6 @@
             });
 
             $(li).click(function() {
-                // self.setBackground("#linear", lgrad);
-                // for (let i = 0; i < active_rls; i++) {
-                //     self.setBackground($(".radial")[i], layers[i]);
-                // }
-
                 active_rls = layers.length;
                 self.genBG(layers, lgrad);
             });
