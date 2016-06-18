@@ -149,29 +149,31 @@
             return string;
         },
 
-        genRDs: function() {
+        buildBGS: function(rgrads, lgrad) {
             /*
-            generate radial gradients and set the backgrounds
+            build background string
             */
 
-            var self = this;
+            var bgs = "";
 
-            // decide how many layer are going to be used
-            active_rls = Math.floor(Math.random() * 6) + 1;
-
-            for (let i = 0; i < active_rls; i++) {
-                self.setBackground($(".radial")[i], self.gRD());
+            // get radial gradients
+            if (rgrads) {
+                for (let i = 0; i < active_rls; i++) {
+                    bgs += rgrads[i] + ",";
+                }
             }
-        },
-
-        setRDs: function(grads) {
-            /*
-            Assign radial gradients and set the backgrounds
-            */
-
-            for (let i = 0; i < active_rls; i++) {
-                this.setBackground($(".radial")[i], grads[i]);
+            else {
+                active_rls = Math.floor(Math.random() * 6) + 1;
+                for (let i = 0; i < active_rls; i++) {
+                    bgs += this.gRD() + ",";
+                }
             }
+
+            // get linear gradient
+            bgs += lgrad || this.gLD();
+            // bgs += ";";
+
+            return bgs;
         },
 
         // ----------------------------------------------------------------------------
@@ -232,10 +234,11 @@
             Print current gradients to console
             */
 
-            var string = this.currentLinGrad + "\n";
+            var string = "";
             for (var r of this.currentRadGrads) {
-                string += r + "\n";
+                string += r + ",\n";
             }
+            string += this.currentLinGrad + "\n";
             console.log(string);
         },
 
@@ -246,18 +249,23 @@
 
             // clear out radial gradients
             this.currentRadGrads = [];
-            this.setBackground(".radial", "transparent");
+            // this.setBackground(".radial", "transparent");
         },
 
-        genBG: function(rgrads, lrad) {
+        genBG: function(rgrads, lgrad) {
             /*
             generate background
             */
 
             this.reset();
 
-            this.setBackground("#linear", lrad || this.gLD());
-            rgrads ? this.setRDs(rgrads) : this.genRDs();
+            // get string
+            // set #canvas background
+
+            this.setBackground("#canvas", this.buildBGS(rgrads, lgrad));
+
+            // this.setBackground("#linear", lrad || this.gLD());
+            // rgrads ? this.setRDs(rgrads) : this.genRDs();
             this.printInfo();
         }
     };
@@ -299,42 +307,6 @@ $(document).ready(function() {
 
     keyboardJS.bind("s", function() {
         // g.saveGrad("#sidebar ul");
-    });
-
-    keyboardJS.bind("0", function() {
-        $("#linear").toggleClass("hide");
-    });
-
-    keyboardJS.bind("1", function() {
-        $("#radial1").toggleClass("hide");
-    });
-
-    keyboardJS.bind("2", function() {
-        $("#radial2").toggleClass("hide");
-    });
-
-    keyboardJS.bind("3", function() {
-        $("#radial3").toggleClass("hide");
-    });
-
-    keyboardJS.bind("4", function() {
-        $("#radial4").toggleClass("hide");
-    });
-
-    keyboardJS.bind("5", function() {
-        $("#radial5").toggleClass("hide");
-    });
-
-    keyboardJS.bind("6", function() {
-        $("#radial6").toggleClass("hide");
-    });
-
-    keyboardJS.bind("7", function() {
-        $("#radial7").toggleClass("hide");
-    });
-
-    keyboardJS.bind("8", function() {
-        $("#radial8").toggleClass("hide");
     });
 
     g.genBG();
