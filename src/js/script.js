@@ -45,14 +45,6 @@
             return dg;
         },
 
-        rShape: function() {
-            /*
-            decide between circle or ellipse
-            */
-
-            return Math.floor(Math.random() * 2) === 0 ? "circle" : "ellipse";
-        },
-
         rPos: function(limit) {
             /*
             generate random position
@@ -120,8 +112,6 @@
             /*
             generate random radial gradient
             */
-
-            // var shape = this.rShape();
 
             var extent = this.rExtent();
 
