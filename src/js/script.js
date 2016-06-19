@@ -151,7 +151,6 @@
 
             // get linear gradient
             bgs += lgrad || this.gLD();
-            // bgs += ";";
 
             return bgs;
         },
@@ -231,7 +230,6 @@
 
             // clear out radial gradients
             this.currentRadGrads = [];
-            // this.setBackground(".radial", "transparent");
         },
 
         genBG: function(rgrads, lgrad) {
@@ -240,14 +238,7 @@
             */
 
             this.reset();
-
-            // get string
-            // set #canvas background
-
             this.setBackground("#canvas", this.buildBGS(rgrads, lgrad));
-
-            // this.setBackground("#linear", lrad || this.gLD());
-            // rgrads ? this.setRDs(rgrads) : this.genRDs();
             this.printInfo();
         }
     };
@@ -258,11 +249,6 @@
 
         self.currentLinGrad = "";
         self.currentRadGrads = [];
-        // TODO: make a more streamlined way to record multiple gradients
-
-        // TODO: load saved gradients from server
-        self.savedGradients = new Set();
-
     };
 
     Gradients.init.prototype = Gradients.prototype;
