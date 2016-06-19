@@ -265,13 +265,21 @@ $(document).ready(function() {
     // TODO: find some way to download these images somehow
     // TODO: write a cookie for when someone has already seen the page
 
-    // init Gradients object
-    var g = Gradients();
+    if (!localStorage.getItem("visited")) {
+        $("#tutorial").css("display", "block");
+        $("#canvas").css("display", "none");
+        localStorage.setItem("visited", true);
+    }
+    else {
+        // init Gradients object
+        var g = Gradients();
 
-    keyboardJS.bind("space", function() {
+        keyboardJS.bind("space", function() {
+            g.genBG();
+        });
+
         g.genBG();
-    });
+    }
 
-    g.genBG();
 
 });
