@@ -1,23 +1,78 @@
 <!--Doctype html -->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Color Gradients</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Color Gradients</title>
 
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="styles/styles.css"/>
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="tutorial">
-                <h1>The tutorial page</h1>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles/styles.css"/>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="tutorial">
+            <h1>CSS Generative Backgrounds</h1>
+            <p>
+                A program that uses CSS3's linear and radial gradients to generate beautiful backgrounds
+            </p>
+            <!-- grid of images -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/Screen Shot 2016-06-15 at 2.14.03 PM.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/Screen Shot 2016-06-15 at 2.30.26 PM.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/Screen Shot 2016-06-15 at 3.02.30 PM.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/Screen Shot 2016-06-15 at 3.21.14 PM.png" alt="...">
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/Screen Shot 2016-06-15 at 4.28.37 PM.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/Screen Shot 2016-06-15 at 5.14.34 PM.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/Screen Shot 2016-06-15 at 6.49.35 PM.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="images/Screen Shot 2016-06-16 at 1.18.32 PM.png" alt="...">
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div id="canvas"></div>
+            <h4>
+                Press the space bar or tap the screen to get a new background
+            </h4>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="js/vendors/keyboard.min.js"></script>
-        <script src="js/script.js"></script>
-    </body>
+        <div id="canvas"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="js/vendors/keyboard.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
 </html>

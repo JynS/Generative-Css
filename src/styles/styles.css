@@ -2,21 +2,42 @@ body {
     margin: 0;
     overflow: hidden;
 }
-#tutorial, #canvas {
-    width: 100%;
-    height: 100%;
-}
-
-#tutorial {
-    display: none;
-}
 
 #wrapper {
     position: relative;
     overflow: hidden;
+    height: 100%;
 }
 
-#sidebar {
+#canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+#tutorial {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    background: rgba(66, 60, 60, 0.8);
+}
+
+#tutorial .container {
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+.thumbnail {
+    background-color: #4a4040;
+    border: 1px solid #261d1d;
+}
+
+/*#sidebar {
     position: absolute;
     z-index: 10;
     width: 300px;
@@ -51,4 +72,4 @@ body {
 
 .hide {
     visibility: hidden;
-}
+}*/
