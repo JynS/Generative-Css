@@ -72,7 +72,7 @@
             generate random percentage
             */
 
-            var pc = (Math.random() * 101) + "%";
+            var pc = (Math.random() * (max - min) + min) + "%";
             return pc;
         },
 
@@ -117,12 +117,33 @@
 
             var posx = this.rPos(1420);
             var posy = this.rPos(720);
+            
+            var string = `radial-gradient(circle ${extent} at ${posx} ${posy}`;
+
+            var numrs = Math.floor(Math.random() * (7 - 3) + 3);
+
+            var ranges = [
+                [0, 0],
+                [10, 21],
+                [30, 41],
+                [50, 61],
+                [70, 81],
+                [95, 95]
+            ];
+
+            for (let i = 0; i < numrs; i++) {
+                var c = this.rColor();
+                var pc = this.rPercent.apply(this, ranges[i]);
+                string += `, ${c} ${pc}`;
+            }
+            string += ")";
 
             var c1 = this.rColor();
             var c2 = this.rColor();
             var c3 = this.rColor();
+            var c4 = this.rColor();
 
-            var string = `radial-gradient(circle ${extent} at ${posx} ${posy}, ${c1} 0%, ${c2} 50%, ${c3} 95%)`;
+            // var string = `radial-gradient(circle ${extent} at ${posx} ${posy}, ${c1} 0%, ${c2} 50%, ${c3} 70%, ${c4} 95%)`;
 
             this.currentRadGrads.push(string);
 
@@ -263,7 +284,7 @@ $(document).ready(function() {
     // TODO: allow user to return to previous gradient
     // TODO: find some way to download these images somehow
     // TODO: add touch screen functionality
-    
+
 
     // init Gradients object
     var g = Gradients();
