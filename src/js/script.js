@@ -262,6 +262,8 @@
 $(document).ready(function() {
     // TODO: allow user to return to previous gradient
     // TODO: find some way to download these images somehow
+    // TODO: add touch screen functionality
+    
 
     // init Gradients object
     var g = Gradients();
