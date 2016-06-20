@@ -261,7 +261,6 @@
 
 $(document).ready(function() {
     // TODO: allow user to return to previous gradient
-    // TODO: Add some form of instruction. perhaps an instruction panel that can be dismissed.
     // TODO: find some way to download these images somehow
 
     // init Gradients object
