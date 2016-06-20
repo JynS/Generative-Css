@@ -263,23 +263,27 @@ $(document).ready(function() {
     // TODO: allow user to return to previous gradient
     // TODO: Add some form of instruction. perhaps an instruction panel that can be dismissed.
     // TODO: find some way to download these images somehow
-    // TODO: write a cookie for when someone has already seen the page
+
+    // init Gradients object
+    var g = Gradients();
 
     if (!localStorage.getItem("visited")) {
         $("#tutorial").css("display", "block");
-        $("#canvas").css("display", "none");
-        localStorage.setItem("visited", true);
-    }
-    else {
-        // init Gradients object
-        var g = Gradients();
 
         keyboardJS.bind("space", function() {
+            $("#tutorial").css("display", "none");
             g.genBG();
         });
 
-        g.genBG();
+        localStorage.setItem("visited", true);
     }
+    else {
+        keyboardJS.bind("space", function() {
+            g.genBG();
+        });
+    }
+
+    g.genBG();
 
 
 });
