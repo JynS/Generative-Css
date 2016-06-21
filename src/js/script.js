@@ -117,7 +117,7 @@
 
             var posx = this.rPos(1420);
             var posy = this.rPos(720);
-            
+
             var string = `radial-gradient(circle ${extent} at ${posx} ${posy}`;
 
             var numrs = Math.floor(Math.random() * (7 - 3) + 3);
@@ -164,7 +164,7 @@
                 }
             }
             else {
-                active_rls = Math.floor(Math.random() * 6) + 1;
+                active_rls = Math.floor(Math.random() * 12) + 1;
                 for (let i = 0; i < active_rls; i++) {
                     bgs += this.gRD() + ",";
                 }
