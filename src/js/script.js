@@ -283,11 +283,10 @@
 $(document).ready(function() {
     // TODO: allow user to return to previous gradient
     // TODO: find some way to download these images somehow
-    // TODO: add touch screen functionality
-
 
     // init Gradients object
     var g = Gradients();
+    var wrapper = document.getElementById("wrapper");
 
     if (!localStorage.getItem("visited")) {
         $("#tutorial").css("display", "block");
@@ -297,10 +296,19 @@ $(document).ready(function() {
             g.genBG();
         });
 
+        wrapper.addEventListener("touchend", function() {
+            $("#tutorial").css("display", "none");
+            g.genBG();
+        });
+
         localStorage.setItem("visited", true);
     }
     else {
         keyboardJS.bind("space", function() {
+            g.genBG();
+        });
+
+        wrapper.addEventListener("touchend", function() {
             g.genBG();
         });
     }
