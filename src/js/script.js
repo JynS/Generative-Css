@@ -137,14 +137,7 @@
                 string += `, ${c} ${pc}`;
             }
             string += ")";
-
-            var c1 = this.rColor();
-            var c2 = this.rColor();
-            var c3 = this.rColor();
-            var c4 = this.rColor();
-
-            // var string = `radial-gradient(circle ${extent} at ${posx} ${posy}, ${c1} 0%, ${c2} 50%, ${c3} 70%, ${c4} 95%)`;
-
+            
             this.currentRadGrads.push(string);
 
             return string;
