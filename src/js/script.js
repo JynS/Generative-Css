@@ -256,11 +256,8 @@
     };
 
     Gradients.init = function() {
-
-        var self = this;
-
-        self.currentLinGrad = "";
-        self.currentRadGrads = [];
+        this.currentLinGrad = "";
+        this.currentRadGrads = [];
     };
 
     Gradients.init.prototype = Gradients.prototype;
