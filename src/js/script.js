@@ -5,7 +5,7 @@
     // global varables
     // ----------------------------------------------------------------------------
 
-    var active_rls = 0;
+    var num_rds = 0;
 
     // ----------------------------------------------------------------------------
     // ----------------------------------------------------------------------------
@@ -154,14 +154,14 @@
 
             // if the radial gradients are passed in
             if (rgrads) {
-                for (let i = 0; i < active_rls; i++) {
+                for (let i = 0; i < num_rds; i++) {
                     bgs += rgrads[i] + ",";
                 }
             }
             else {
                 // generate them
-                active_rls = Math.floor(Math.random() * 12) + 1;
-                for (let i = 0; i < active_rls; i++) {
+                num_rds = Math.floor(Math.random() * 12) + 1;
+                for (let i = 0; i < num_rds; i++) {
                     bgs += this.gRD() + ",";
                 }
             }
@@ -212,7 +212,7 @@
             });
 
             $(li).click(function() {
-                active_rls = layers.length;
+                num_rds = layers.length;
                 self.genBG(layers, lgrad);
             });
 
