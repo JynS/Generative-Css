@@ -120,8 +120,10 @@
 
             var string = `radial-gradient(circle ${extent} at ${posx} ${posy}`;
 
+            // decide how many rings the circle will have
             var numrs = Math.floor(Math.random() * (7 - 3) + 3);
 
+            // allowable ranges of percentages depending on which ring is chosen
             var ranges = [
                 [0, 0],
                 [10, 21],
@@ -137,7 +139,7 @@
                 string += `, ${c} ${pc}`;
             }
             string += ")";
-            
+
             this.currentRadGrads.push(string);
 
             return string;
@@ -150,13 +152,14 @@
 
             var bgs = "";
 
-            // get radial gradients
+            // if the radial gradients are passed in
             if (rgrads) {
                 for (let i = 0; i < active_rls; i++) {
                     bgs += rgrads[i] + ",";
                 }
             }
             else {
+                // generate them
                 active_rls = Math.floor(Math.random() * 12) + 1;
                 for (let i = 0; i < active_rls; i++) {
                     bgs += this.gRD() + ",";
@@ -220,8 +223,12 @@
         },
         */
 
-        setBackground: function(canvas, grad) {
-            $(canvas).css("background", grad);
+        setBackground: function(canvas, bg) {
+            /*
+            Apply css background to the whatever element is passed in
+            */
+
+            $(canvas).css("background", bg);
         },
 
         printInfo: function() {
