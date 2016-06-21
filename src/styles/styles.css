@@ -18,8 +18,9 @@ body {
     margin-bottom: 40px;
 }
 
-h4 {
-    padding: 0 8px 0 8px;
+p {
+    padding: 8px 8px 0 8px;
+    font-size: 1.2em;
 }
 
 .thumbnail {
