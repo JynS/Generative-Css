@@ -290,10 +290,14 @@ $(document).ready(function() {
             g.genBG();
         });
 
-        wrapper.addEventListener("touchend", function() {
+        $("#start").click(function() {
             $("#welcome").css("display", "none");
-            g.genBG();
+
+            wrapper.addEventListener("touchend", function() {
+                g.genBG();
+            });
         });
+
 
         // add 'visited' key to local storage
         localStorage.setItem("visited", true);
