@@ -244,21 +244,12 @@
             console.log(string);
         },
 
-        reset: function() {
-            /*
-            reset radial backgrounds
-            */
-
-            // clear out radial gradients
-            this.currentRadGrads = [];
-        },
-
         genBG: function(rgrads, lgrad) {
             /*
-            generate background
+            generate css background
             */
 
-            this.reset();
+            this.currentRadGrads = [];
             this.setBackground("#canvas", this.buildBGS(rgrads, lgrad));
             this.printInfo();
         }
