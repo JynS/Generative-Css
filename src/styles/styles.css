@@ -16,7 +16,7 @@ body {
     z-index: 1;
 }
 
-#tutorial {
+#welcome {
     display: none;
     position: absolute;
     width: 100%;
@@ -27,7 +27,7 @@ body {
     background: rgba(66, 60, 60, 0.8);
 }
 
-#tutorial .container {
+#welcome .container {
     margin-top: 90px;
     margin-bottom: 90px;
 }

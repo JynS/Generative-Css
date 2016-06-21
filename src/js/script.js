@@ -281,17 +281,17 @@ $(document).ready(function() {
     if (!localStorage.getItem("visited")) {
 
         // display welcome page
-        $("#tutorial").css("display", "block");
+        $("#welcome").css("display", "block");
 
         // generate new background if spacebar is pressed, or screen is touched
         // and remove welcome page
         keyboardJS.bind("space", function() {
-            $("#tutorial").css("display", "none");
+            $("#welcome").css("display", "none");
             g.genBG();
         });
 
         wrapper.addEventListener("touchend", function() {
-            $("#tutorial").css("display", "none");
+            $("#welcome").css("display", "none");
             g.genBG();
         });
 
