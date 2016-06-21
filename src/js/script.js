@@ -98,9 +98,9 @@
 
             // build linear-gradient string
             var string = "linear-gradient(" + angle;
-            for (var c in colors) {
-                string += ", " + colors[c];
-            }
+            colors.forEach(v => {
+                string += ", " + v;
+            });
             string += " " + pc + ")";
 
             this.currentLinGrad = string;
