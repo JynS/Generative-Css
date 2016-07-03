@@ -108,6 +108,12 @@ module.exports = function(grunt) {
                 cwd: 'src/styles/',
                 src: '{,*/}*.css',
                 dest: '.tmp/styles/',
+            },
+            images: {
+                expand: true,
+                cwd: 'src/images/',
+                src: '{,*/}*.png',
+                dest: 'dist/images'
             }
         },
         filerev: {
@@ -264,6 +270,31 @@ module.exports = function(grunt) {
         'usemin',
 
         // minify the html in dist
+        'htmlmin',
+    ]);
+
+    grunt.registerTask('build --no-imagemin', [
+        'clean:dist',
+
+        'useminPrepare',
+
+        'autoprefixer',
+
+        'concat',
+
+        'copy:dist',
+        'copy:styles',
+        'copy:images',
+
+        'cssmin',
+
+        'babel:dist',
+
+        'uglify',
+        'filerev',
+
+        'usemin',
+
         'htmlmin',
     ]);
 
