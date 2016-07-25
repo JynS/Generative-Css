@@ -55,3 +55,7 @@ p {
     background: rgba(66, 60, 60, 0.8);
     overflow-y: scroll;
 }
+
+#cookie_disclaimer {
+    display: none;
+}

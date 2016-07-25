@@ -197,9 +197,11 @@
         printInfo();
     }
 
-    function runFirstVisit() {
+    function runWelcome() {
+        /*
+        Displays the welcome page
+        */
 
-        // display welcome page
         $("#welcome").css("display", "block");
 
         // generate new background if spacebar is pressed, or screen is touched
@@ -208,7 +210,6 @@
             $("#welcome").css("display", "none");
             genBG();
         });
-
         $("#start").click(function() {
             $("#welcome").css("display", "none");
 
@@ -217,31 +218,54 @@
             });
         });
 
+    }
 
-        // add 'visited' key to local storage
-        localStorage.setItem("visited", true);
+    function runCookiesBlocked() {
+        /*
+        Displays the welcome page along with the cookie disclaimer
+        */
+
+        runWelcome();
+        $("#cookie_disclaimer").css("display", "block");
+
     }
 
     function runDefault() {
+        /*
+        Used for users who have visited the site before and accept cookies
+        */
 
         // generate new background if spacebar is pressed, or screen is touched
         keyboardJS.bind("space", function() {
             genBG();
         });
-
         wrapper.addEventListener("touchend", function() {
             genBG();
         });
     }
 
-    // Check if this is the first visit to the site
-    if (!localStorage.getItem("visited")) {
-        runFirstVisit();
+    // Check if the user allows cookies (which covers localstorage);
+    if (Modernizr.localstorage) {
+        // supported
+
+        // Check if this is the first visit to the site
+        if (!localStorage.getItem("visited")) {
+            runWelcome();
+            // add 'visited' key to local storage
+            localStorage.setItem("visited", true);
+        }
+        else {
+            runDefault();
+        }
+
     }
     else {
-        runDefault();
+        // not-supported
+
+        runCookiesBlocked();
     }
 
     genBG();
+
 
 })(window, jQuery);
