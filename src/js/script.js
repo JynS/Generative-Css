@@ -7,273 +7,194 @@
 
     var num_rds = 0;
 
+    var currentLinGrad = "";
+    var currentRadGrads = [];
+
+
     // ----------------------------------------------------------------------------
-    // ----------------------------------------------------------------------------
-    // Gradients object
-    // ----------------------------------------------------------------------------
+    // Building gradient functions
     // ----------------------------------------------------------------------------
 
-    var Gradients = function() {
-        return new Gradients.init();
-    };
-
-    Gradients.prototype = {
-
-        // ----------------------------------------------------------------------------
-        // Building gradient functions
-        // ----------------------------------------------------------------------------
-
-        rColor: function(min, max) {
-            /*
-            generate random color
-            */
-
-            var r = Math.floor(Math.random() * 256);
-            var g = Math.floor(Math.random() * 256);
-            var b = Math.floor(Math.random() * 256);
-            var a = Math.random();
-
-            return `rgba(${r}, ${g}, ${b}, ${a})`;
-        },
-
-        rDeg: function() {
-            /*
-            generate random degree
-            */
-
-            var dg = (Math.random() * 361) + "deg";
-            return dg;
-        },
-
-        rPos: function(limit) {
-            /*
-            generate random position
-            */
-
-            var pos = Math.floor(Math.random() * limit) + 10;
-
-            return pos + "px";
-        },
-
-        rExtent: function() {
-            /*
-            decide which extent to use for radial gradients
-            */
-
-            var exs = "closest-corner closest-side farthest-corner farthest-side".split(" ");
-
-            var i = Math.floor(Math.random() * 4);
-
-            return exs[i];
-        },
-
-        rPercent: function(min, max) {
-            /*
-            generate random percentage
-            */
-
-            var pc = (Math.random() * (max - min) + min) + "%";
-            return pc;
-        },
-
-        gLD: function() {
-            /*
-            generate random linear gradient
-            */
-
-            // generate direction
-            var angle = this.rDeg();
-
-            // decide how many colors will be used
-            var numc = Math.floor(Math.random() * 10) + 2;
-            var colors = [];
-            // generate colors
-            for (var i = 0; i < numc; i++) {
-                colors.push(this.rColor());
-            }
-
-            // generate percentage
-            // var pc = this.rPercent();
-            var pc = "100%";
-
-            // build linear-gradient string
-            var string = "linear-gradient(" + angle;
-            colors.forEach(v => {
-                string += ", " + v;
-            });
-            string += " " + pc + ")";
-
-            this.currentLinGrad = string;
-
-            return string;
-        },
-
-        gRD: function() {
-            /*
-            generate random radial gradient
-            */
-
-            var extent = this.rExtent();
-
-            var posx = this.rPos(window.screen.width);
-            var posy = this.rPos(window.screen.height);
-
-            var string = `radial-gradient(circle ${extent} at ${posx} ${posy}`;
-
-            // decide how many rings the circle will have
-            var numrs = Math.floor(Math.random() * (7 - 3) + 3);
-
-            // allowable ranges of percentages depending on which ring is chosen
-            var ranges = [
-                [0, 0],
-                [10, 21],
-                [30, 41],
-                [50, 61],
-                [70, 81],
-                [95, 95]
-            ];
-
-            for (let i = 0; i < numrs; i++) {
-                var c = this.rColor();
-                var pc = this.rPercent.apply(this, ranges[i]);
-                string += `, ${c} ${pc}`;
-            }
-            string += ")";
-
-            this.currentRadGrads.push(string);
-
-            return string;
-        },
-
-        buildBGS: function(rgrads, lgrad) {
-            /*
-            build background string
-            */
-
-            var bgs = "";
-
-            // if the radial gradients are passed in
-            if (rgrads) {
-                for (let i = 0; i < num_rds; i++) {
-                    bgs += rgrads[i] + ",";
-                }
-            }
-            else {
-                // generate them
-                num_rds = Math.floor(Math.random() * 12) + 1;
-                for (let i = 0; i < num_rds; i++) {
-                    bgs += this.gRD() + ",";
-                }
-            }
-
-            // get linear gradient
-            bgs += lgrad || this.gLD();
-
-            return bgs;
-        },
-
-        // ----------------------------------------------------------------------------
-        // Saving gradients functions
-        // ----------------------------------------------------------------------------
-
+    function rColor(min, max) {
         /*
-        // build a color square
-        // addi it to the list
-
-        saveGrad: function(ul) {
-            var img = document.createElement("img");
-
-        },
-
-        buildSwatch: function(ul) {
-
-            var self = this;
-            var lgrad = self.currentLinGrad;
-
-            // buld swatch
-            var li = document.createElement("li");
-            var sw = document.createElement("div");
-
-            var layers = [];
-
-            // add classes / set gradient
-            $(sw).addClass("swatch");
-            self.setBackground(sw, lgrad);
-            $(sw).css("z-index", 10);
-
-            self.currentRadGrads.forEach((v, i) => {
-                layers.push(v);
-
-                var div = document.createElement("div");
-                $(div).addClass("swatch-layer");
-                self.setBackground(div, v);
-                $(div).css("z-index", (11 + i));
-                $(sw).append(div);
-            });
-
-            $(li).click(function() {
-                num_rds = layers.length;
-                self.genBG(layers, lgrad);
-            });
-
-
-
-            $(li).append(sw);
-            $(ul).append(li);
-        },
+        generate random color
         */
 
-        setBackground: function(canvas, bg) {
-            /*
-            Apply css background to the whatever element is passed in
-            */
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        var a = Math.random();
 
-            $(canvas).css("background", bg);
-        },
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
 
-        printInfo: function() {
-            /*
-            Print current gradients to console
-            */
+    function rDeg() {
+        /*
+        generate random degree
+        */
 
-            var string = "";
-            for (var r of this.currentRadGrads) {
-                string += r + ",\n";
-            }
-            string += this.currentLinGrad + "\n";
-            console.log(string);
-        },
+        var dg = (Math.random() * 361) + "deg";
+        return dg;
+    }
 
-        genBG: function(rgrads, lgrad) {
-            /*
-            generate css background
-            */
+    function rPos(limit) {
+        /*
+        generate random position
+        */
 
-            this.currentRadGrads = [];
-            this.setBackground("#canvas", this.buildBGS(rgrads, lgrad));
-            this.printInfo();
+        var pos = Math.floor(Math.random() * limit) + 10;
+
+        return pos + "px";
+    }
+
+    function rExtent() {
+        /*
+        decide which extent to use for radial gradients
+        */
+
+        var exs = "closest-corner closest-side farthest-corner farthest-side".split(" ");
+
+        var i = Math.floor(Math.random() * 4);
+
+        return exs[i];
+    }
+
+    function rPercent(min, max) {
+        /*
+        generate random percentage
+        */
+
+        var pc = (Math.random() * (max - min) + min) + "%";
+        return pc;
+    }
+
+    function gLD() {
+        /*
+        generate random linear gradient
+        */
+
+        // generate direction
+        var angle = rDeg();
+
+        // decide how many colors will be used
+        var numc = Math.floor(Math.random() * 10) + 2;
+        var colors = [];
+        // generate colors
+        for (var i = 0; i < numc; i++) {
+            colors.push(rColor());
         }
-    };
 
-    Gradients.init = function() {
-        this.currentLinGrad = "";
-        this.currentRadGrads = [];
-    };
+        // generate percentage
+        // var pc = this.rPercent();
+        var pc = "100%";
 
-    Gradients.init.prototype = Gradients.prototype;
+        // build linear-gradient string
+        var string = "linear-gradient(" + angle;
+        colors.forEach(v => {
+            string += ", " + v;
+        });
+        string += " " + pc + ")";
 
-    global.Gradients = Gradients;
+        currentLinGrad = string;
 
-})(window, jQuery);
+        return string;
+    }
 
+    function gRD() {
+        /*
+        generate random radial gradient
+        */
 
+        var extent = rExtent();
 
-$(document).ready(function() {
-    // TODO: allow user to return to previous gradient
-    // TODO: find some way to download these images somehow
+        var posx = rPos(window.screen.width);
+        var posy = rPos(window.screen.height);
 
-    // init Gradients object
-    var g = Gradients();
+        var string = `radial-gradient(circle ${extent} at ${posx} ${posy}`;
+
+        // decide how many rings the circle will have
+        var numrs = Math.floor(Math.random() * (7 - 3) + 3);
+
+        // allowable ranges of percentages depending on which ring is chosen
+        var ranges = [
+            [0, 0],
+            [10, 21],
+            [30, 41],
+            [50, 61],
+            [70, 81],
+            [95, 95]
+        ];
+
+        for (let i = 0; i < numrs; i++) {
+            var c = rColor();
+            var pc = rPercent.apply(this, ranges[i]);
+            string += `, ${c} ${pc}`;
+        }
+        string += ")";
+
+        currentRadGrads.push(string);
+
+        return string;
+    }
+
+    function buildBGS(rgrads, lgrad) {
+        /*
+        build background string
+        */
+
+        var bgs = "";
+
+        // if the radial gradients are passed in
+        if (rgrads) {
+            for (let i = 0; i < num_rds; i++) {
+                bgs += rgrads[i] + ",";
+            }
+        }
+        else {
+            // generate them
+            num_rds = Math.floor(Math.random() * 12) + 1;
+            for (let i = 0; i < num_rds; i++) {
+                bgs += gRD() + ",";
+            }
+        }
+
+        // get linear gradient
+        bgs += lgrad || gLD();
+
+        return bgs;
+    }
+
+    function setBackground(canvas, bg) {
+        /*
+        Apply css background to the whatever element is passed in
+        */
+
+        $(canvas).css("background", bg);
+    }
+
+    function printInfo() {
+        /*
+        Print current gradients to console
+        */
+
+        var string = "";
+        for (var r of currentRadGrads) {
+            string += r + ",\n";
+        }
+        string += currentLinGrad + "\n";
+        console.log(string);
+    }
+
+    function genBG(rgrads, lgrad) {
+        /*
+        generate css background
+        */
+
+        currentRadGrads = [];
+        setBackground("#canvas", buildBGS(rgrads, lgrad));
+        printInfo();
+    }
+
     var wrapper = document.getElementById("wrapper");
 
 
@@ -287,14 +208,14 @@ $(document).ready(function() {
         // and remove welcome page
         keyboardJS.bind("space", function() {
             $("#welcome").css("display", "none");
-            g.genBG();
+            genBG();
         });
 
         $("#start").click(function() {
             $("#welcome").css("display", "none");
 
             wrapper.addEventListener("touchend", function() {
-                g.genBG();
+                genBG();
             });
         });
 
@@ -306,15 +227,14 @@ $(document).ready(function() {
 
         // generate new background if spacebar is pressed, or screen is touched
         keyboardJS.bind("space", function() {
-            g.genBG();
+            genBG();
         });
 
         wrapper.addEventListener("touchend", function() {
-            g.genBG();
+            genBG();
         });
     }
 
-    g.genBG();
+    genBG();
 
-
-});
+})(window, jQuery);
