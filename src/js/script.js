@@ -10,6 +10,8 @@
     var currentLinGrad = "";
     var currentRadGrads = [];
 
+    var wrapper = document.getElementById("wrapper");
+
 
     // ----------------------------------------------------------------------------
     // Building gradient functions
@@ -195,11 +197,7 @@
         printInfo();
     }
 
-    var wrapper = document.getElementById("wrapper");
-
-
-    // Check if this is the first visit to the site
-    if (!localStorage.getItem("visited")) {
+    function runFirstVisit() {
 
         // display welcome page
         $("#welcome").css("display", "block");
@@ -223,7 +221,8 @@
         // add 'visited' key to local storage
         localStorage.setItem("visited", true);
     }
-    else {
+
+    function runDefault() {
 
         // generate new background if spacebar is pressed, or screen is touched
         keyboardJS.bind("space", function() {
@@ -233,6 +232,14 @@
         wrapper.addEventListener("touchend", function() {
             genBG();
         });
+    }
+
+    // Check if this is the first visit to the site
+    if (!localStorage.getItem("visited")) {
+        runFirstVisit();
+    }
+    else {
+        runDefault();
     }
 
     genBG();
