@@ -109,8 +109,8 @@
 
         var extent = rExtent();
 
-        var posx = rPos(window.screen.width);
-        var posy = rPos(window.screen.height);
+        var posx = rPos(window.innerWidth);
+        var posy = rPos(window.innerHeight);
 
         var string = `radial-gradient(circle ${extent} at ${posx} ${posy}`;
 
