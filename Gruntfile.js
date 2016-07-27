@@ -102,7 +102,8 @@ module.exports = function(grunt) {
                             '*.png',
                             '*.svg',
                             '*.xml',
-                            "*.ico"
+                            "*.ico",
+                            "*.txt"
                         ]
                     }
                 ]
