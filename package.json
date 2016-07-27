@@ -2,7 +2,6 @@
   "name": "css-generative-backgrounds",
   "version": "1.0.0",
   "description": "A program that uses CSS3's linear and radial gradients to generate beautiful backgrounds",
-  "main": "src/script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +10,7 @@
     "generative",
     "art"
   ],
-  "author": "GoesOnGhost",
+  "author": "JynS",
   "license": "ISC",
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
