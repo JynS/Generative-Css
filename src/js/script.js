@@ -267,5 +267,14 @@
 
     genBG();
 
+    // attach hover listener to #footer
+    $("#footer").hover(function() {
+        $("#footer").css("color", "#337ab7");
+        $("#footer a").css("color", "#337ab7");
+    }, function() {
+        $("#footer").css("color", "transparent");
+        $("#footer a").css("color", "transparent");
+    });
+
 
 })(window, jQuery);
