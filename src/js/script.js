@@ -5,6 +5,7 @@
     // global varables
     // ----------------------------------------------------------------------------
 
+    // number of radial gradients
     var num_rds = 0;
 
     var currentLinGrad = "";
