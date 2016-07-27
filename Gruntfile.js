@@ -278,31 +278,6 @@ module.exports = function(grunt) {
         'htmlmin',
     ]);
 
-    grunt.registerTask('build --no-imagemin', [
-        'clean:dist',
-
-        'useminPrepare',
-
-        'autoprefixer',
-
-        'concat',
-
-        'copy:dist',
-        'copy:styles',
-        'copy:images',
-
-        'cssmin',
-
-        'babel:dist',
-
-        'uglify',
-        'filerev',
-
-        'usemin',
-
-        'htmlmin',
-    ]);
-
     grunt.registerTask('deploy', [
         'build',
         // 'shell'
