@@ -15,10 +15,10 @@ module.exports = function(grunt) {
     });
 
     // part of what makes livereload work
-    var appConfig = {
-        app: 'src',
-        dist: 'dist'
-    };
+    // var appConfig = {
+    //     app: 'src',
+    //     dist: 'dist'
+    // };
 
     // the settings for all the plugins
     grunt.initConfig({
@@ -305,12 +305,6 @@ module.exports = function(grunt) {
     grunt.registerTask('deploy', [
         'build',
         // 'shell'
-    ]);
-
-    grunt.registerTask('default', [
-        // 'newer:jshint',
-        // 'test',
-        // 'build'
     ]);
 
 };
